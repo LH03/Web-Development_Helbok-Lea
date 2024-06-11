@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Playlist</title>
+  <script src="main.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="navbar">
+    <div id="title">Spotify Playlist</div>
+    <input type="text" id="search-bar" placeholder="Search...">
+    <div id="notifications"><img src="img/notification.svg"></div>
+    <div id="profile"><img src="img/Profile.svg"></div>
+  </div>
+  <div id="main">
+    <div class="player" id="player">
+      <div class="current-track">
+        <img src="img/PLayList-Art.webp" alt="Album Art" id="album-art">
+        <div class="track-info">
+          <span id="track-name">Track Name</span>
+          <span id="artist-name">Artist Name</span>
+        </div>
+      </div>
+      <audio id="audio-player" controls style="width: 100%; margin-top: 20px;"></audio>
+    </div>
+    <div class="playlist">
+      <img src="" alt="Playlist Art" id="playlist-art">
+      <h1 id="playlist-name">Spotify Playlist</h1>
+      <p id="playlist-owner">
+      <p id="playlist-description"></p>
+      <div data-js="tracks">
+        <!-- Here we are going to display the fetched tracks -->
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

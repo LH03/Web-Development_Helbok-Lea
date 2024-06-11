@@ -1,52 +1,13 @@
-# Prerequisites
-*.d
+# .gitignore
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Ignore mac specific files
+.DS_Store
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# Ignore env file
+.env
 
-# Precompiled Headers
-*.gch
-*.pch
+# Ignore all env.js files in any folder
+*/**/env.js
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+node_modules
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
