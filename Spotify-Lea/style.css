@@ -6,13 +6,14 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f8f8f8;
+  background: linear-gradient(135deg, #7118ea, #a86dfc);
+  color: white;
 }
 
 #navbar {
   width: 100%;
   padding: 10px 20px;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
@@ -21,6 +22,7 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
 #title {
@@ -40,9 +42,10 @@ body {
 #profile,
 #notifications {
   padding: 10px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   margin-left: 10px;
+  border-radius: 50%;
 }
 
 #main {
@@ -51,6 +54,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   height: calc(100vh - 50px);
+  color: white;
 }
 
 .player {
@@ -59,13 +63,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 70px;
-  height: calc(100vh - 140px);
+  height: calc(100vh - 150px);
   overflow-y: auto;
   display: none;
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
 }
 
 .current-track {
@@ -78,7 +84,7 @@ body {
   width: 150px;
   height: 150px;
   margin-bottom: 10px;
-  /*margin-top: 20px; */
+  margin-top: 20px;
   border-radius: 8px;
 }
 
@@ -94,66 +100,26 @@ body {
   font-weight: bold;
 }
 
-.playlist-info {
-  position: -webkit-sticky; /* For Safari */
-  position: sticky;
-  top: 0;
-  background-color: white; /* Add a background color to avoid transparency issue */
-  z-index: 10; /* Ensure it stays above other elements */
-  margin-bottom: 0; /* Ensure no bottom margin pushes it down */
-  padding: 10px; /* Adjust padding as necessary */
-}
-
 #artist-name {
   font-size: 16px;
-  color: #666;
+  color: #ddd;
 }
 
-/* Playlist container styling */
 .playlist {
   flex: 1;
-  /*padding: 20px;*/
-  overflow: hidden; /* Remove scrolling from playlist */
-  display: flex;
-  flex-direction: column;
+  padding: 0 20px 20px 20px;
+  overflow-y: auto;
 }
 
-/* Tracks list styling */
-div[data-js="tracks"] {
-  flex: 1;
-  overflow-y: auto; /* Make the tracks div scrollable */
-}
-
-/* Optional: Styling the scrollbar */
-div[data-js="tracks"]::-webkit-scrollbar {
-  width: 8px;
-}
-
-div[data-js="tracks"]::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-div[data-js="tracks"]::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-div[data-js="tracks"]::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Optional: Firefox scrollbar style */
-div[data-js="tracks"] {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-}
-
-div[data-js="tracks"]:hover {
-  scrollbar-color: #555 #f1f1f1;
-}
-
-.playlist h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.playlist-info {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  padding: 20px 20px 20px 20px;
+  /*border-bottom: solid 2px rgba(238, 238, 238, 0.5);*/
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
 }
 
 #playlist-art {
@@ -196,7 +162,7 @@ li {
 
 .artist {
   font-size: 14px;
-  color: #666;
+  color: #ddd;
 }
 
 .duration {
@@ -230,20 +196,44 @@ audio {
 
 #playlist-owner {
   font-size: 16px;
-  color: #666;
+  color: #ddd;
   margin-bottom: 20px;
 }
 
-li button:hover {
-  scale: 2x;
-}
-
 li:hover {
-  background-color: lightgray;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .active-track {
-  background-color: lightgray;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Thin and decent scrollbar style */
+.playlist::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.playlist::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar style */
+.playlist {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Firefox scrollbar thumb on hover */
+.playlist:hover {
+  scrollbar-color: #555 #f1f1f1;
 }
 
 .playing-gif {
@@ -257,7 +247,7 @@ li:hover {
   margin-right: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #666;
+  color: #ddd;
   display: flex;
   justify-content: center;
   align-items: center;

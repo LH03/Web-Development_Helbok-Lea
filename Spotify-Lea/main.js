@@ -1,6 +1,6 @@
 const SPOTIFY_CLIENT_ID = "67b411e20d594f30bf7a8d3bbde54285";
 const SPOTIFY_CLIENT_SECRET = "161fc5e3df004b95af3ba8c62f3eaf54";
-const PLAYLIST_ID = "32RwzxhOTD3kLBZMSs3rqh";
+const PLAYLIST_ID = "6QYQQWUQ14VxtOyju93Hn6";
 const container = document.querySelector('div[data-js="tracks"]');
 const albumArt = document.getElementById("album-art");
 const trackNameElem = document.getElementById("track-name");
@@ -13,34 +13,25 @@ const playlistDescriptionElem = document.getElementById("playlist-description");
 const audioPlayer = document.getElementById("audio-player");
 const navbar = document.getElementById("navbar");
 const playlistTitle = document.getElementById("title");
-const playlistInfo = document.querySelector(".playlist-info");
 let isPlaylistTitleFixed = false;
 
 window.addEventListener("scroll", () => {
-  const playlistArtBottom = playlistArt.getBoundingClientRect().bottom;
-  const navbarHeight = navbar.offsetHeight;
+  const scrollPosition = window.scrollY;
 
-  if (playlistArtBottom <= navbarHeight) {
-    playlistInfo.style.position = "fixed";
-    playlistInfo.style.top = `${navbarHeight}px`;
-    playlistInfo.style.width = "calc(100% - 40px)"; // Adjust width to match padding/margin
-  } else {
-    playlistInfo.style.position = "";
-    playlistInfo.style.top = "";
-    playlistInfo.style.width = "";
-  }
-});
-
-window.addEventListener("scroll", () => {
-  const playlistArtBottom = playlistArt.getBoundingClientRect().bottom;
-  const navbarHeight = navbar.offsetHeight;
-
-  if (window.scrollY === 0) {
-    playlistArt.style.display = "block";
-  } else if (playlistArtBottom <= navbarHeight) {
-    playlistArt.style.display = "none";
-  } else {
-    playlistArt.style.display = "block";
+  if (scrollPosition > player.offsetTop && !isPlaylistTitleFixed) {
+    navbar.style.height = navbar.offsetHeight + "px"; // Maintain navbar height
+    playlistTitle.style.position = "fixed";
+    playlistTitle.style.top = "0";
+    playlistTitle.style.left = "50%";
+    playlistTitle.style.transform = "translateX(-50%)";
+    isPlaylistTitleFixed = true;
+  } else if (scrollPosition <= player.offsetTop && isPlaylistTitleFixed) {
+    navbar.style.height = ""; // Reset navbar height
+    playlistTitle.style.position = "";
+    playlistTitle.style.top = "";
+    playlistTitle.style.left = "";
+    playlistTitle.style.transform = "";
+    isPlaylistTitleFixed = false;
   }
 });
 
