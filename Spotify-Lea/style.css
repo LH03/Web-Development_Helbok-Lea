@@ -78,7 +78,7 @@ body {
   width: 150px;
   height: 150px;
   margin-bottom: 10px;
-  margin-top: 20px;
+  /*margin-top: 20px; */
   border-radius: 8px;
 }
 
@@ -93,6 +93,7 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
+
 .playlist-info {
   position: -webkit-sticky; /* For Safari */
   position: sticky;
@@ -102,15 +103,52 @@ body {
   margin-bottom: 0; /* Ensure no bottom margin pushes it down */
   padding: 10px; /* Adjust padding as necessary */
 }
+
 #artist-name {
   font-size: 16px;
   color: #666;
 }
 
+/* Playlist container styling */
 .playlist {
   flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+  /*padding: 20px;*/
+  overflow: hidden; /* Remove scrolling from playlist */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tracks list styling */
+div[data-js="tracks"] {
+  flex: 1;
+  overflow-y: auto; /* Make the tracks div scrollable */
+}
+
+/* Optional: Styling the scrollbar */
+div[data-js="tracks"]::-webkit-scrollbar {
+  width: 8px;
+}
+
+div[data-js="tracks"]::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+div[data-js="tracks"]::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+div[data-js="tracks"]::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Optional: Firefox scrollbar style */
+div[data-js="tracks"] {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+div[data-js="tracks"]:hover {
+  scrollbar-color: #555 #f1f1f1;
 }
 
 .playlist h1 {
@@ -206,34 +244,6 @@ li:hover {
 
 .active-track {
   background-color: lightgray;
-}
-
-/* Thin and decent scrollbar style */
-.playlist::-webkit-scrollbar {
-  width: 8px;
-}
-
-.playlist::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.playlist::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-.playlist::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Firefox scrollbar style */
-.playlist {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-}
-
-/* Firefox scrollbar thumb on hover */
-.playlist:hover {
-  scrollbar-color: #555 #f1f1f1;
 }
 
 .playing-gif {

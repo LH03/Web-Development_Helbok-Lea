@@ -31,6 +31,19 @@ window.addEventListener("scroll", () => {
   }
 });
 
+window.addEventListener("scroll", () => {
+  const playlistArtBottom = playlistArt.getBoundingClientRect().bottom;
+  const navbarHeight = navbar.offsetHeight;
+
+  if (window.scrollY === 0) {
+    playlistArt.style.display = "block";
+  } else if (playlistArtBottom <= navbarHeight) {
+    playlistArt.style.display = "none";
+  } else {
+    playlistArt.style.display = "block";
+  }
+});
+
 let currentPlayingTrack = null;
 let currentPlayButton = null;
 let currentTrackIndex = -1;
