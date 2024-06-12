@@ -11,11 +11,32 @@ const playlistNameElem = document.getElementById("playlist-name");
 const playlistOwnerElem = document.getElementById("playlist-owner");
 const playlistDescriptionElem = document.getElementById("playlist-description");
 const audioPlayer = document.getElementById("audio-player");
+const navbar = document.getElementById("navbar");
+const playlistTitle = document.getElementById("title");
+const playlistInfo = document.querySelector(".playlist-info");
+let isPlaylistTitleFixed = false;
+
+window.addEventListener("scroll", () => {
+  const playlistArtBottom = playlistArt.getBoundingClientRect().bottom;
+  const navbarHeight = navbar.offsetHeight;
+
+  if (playlistArtBottom <= navbarHeight) {
+    playlistInfo.style.position = "fixed";
+    playlistInfo.style.top = `${navbarHeight}px`;
+    playlistInfo.style.width = "calc(100% - 40px)"; // Adjust width to match padding/margin
+  } else {
+    playlistInfo.style.position = "";
+    playlistInfo.style.top = "";
+    playlistInfo.style.width = "";
+  }
+});
+
 let currentPlayingTrack = null;
 let currentPlayButton = null;
-let currentTrackIndex = -1; // Track the current playing track index
-let tracks = []; // Store tracks globally
-let trackElements = []; // Store track elements
+let currentTrackIndex = -1;
+let tracks = [];
+let trackElements = [];
+let trackNumbers = []; // Store track numbers to revert back later
 
 function fetchPlaylist(token, playlistId) {
   fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
@@ -96,6 +117,7 @@ function addTracksToPage(tracks) {
 
     ul.appendChild(li);
     trackElements.push(li); // Store reference to the track element
+    trackNumbers.push(trackNumber); // Store reference to the track number element
   });
   container.appendChild(ul);
 }
@@ -111,9 +133,13 @@ function playTrack(index, playButton, trackElement) {
     if (!audioPlayer.paused) {
       audioPlayer.pause();
       playButton.querySelector("img").src = "img/play.svg";
+      trackNumbers[currentTrackIndex].textContent = currentTrackIndex + 1; // Revert back to track number
     } else {
       audioPlayer.play();
       playButton.querySelector("img").src = "img/pause.svg";
+      trackNumbers[
+        currentTrackIndex
+      ].innerHTML = `<img src="img/WaveForm.gif" alt="Playing" class="playing-gif">`; // Display GIF
     }
   } else {
     if (currentPlayButton) {
@@ -121,6 +147,7 @@ function playTrack(index, playButton, trackElement) {
     }
     if (currentTrackIndex !== -1) {
       trackElements[currentTrackIndex].classList.remove("active-track");
+      trackNumbers[currentTrackIndex].textContent = currentTrackIndex + 1; // Revert back to track number
     }
 
     const track = tracks[index].track;
@@ -137,6 +164,9 @@ function playTrack(index, playButton, trackElement) {
       currentPlayButton = playButton;
       currentTrackIndex = index;
       trackElement.classList.add("active-track");
+      trackNumbers[
+        currentTrackIndex
+      ].innerHTML = `<img src="img/Waving.gif" alt="Playing" class="playing-gif">`; // Display GIF
     } else {
       audioPlayer.style.display = "none";
       console.log("Preview not available for this track");
@@ -148,6 +178,7 @@ function playTrack(index, playButton, trackElement) {
   audioPlayer.onended = () => {
     playButton.querySelector("img").src = "img/play.svg";
     trackElement.classList.remove("active-track");
+    trackNumbers[currentTrackIndex].textContent = currentTrackIndex + 1; // Revert back to track number
     currentPlayingTrack = null;
     currentPlayButton = null;
     audioPlayer.src = "";
