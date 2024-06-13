@@ -223,7 +223,7 @@ audioPlayer.addEventListener("timeupdate", () => {
   const currentTime = audioPlayer.currentTime;
   const progressPercent = (currentTime / audioPlayer.duration) * 100;
   progressBar.value = progressPercent;
-  progressBar.style.background = `linear-gradient(to right, purple ${progressPercent}%, #d3d3d3 ${progressPercent}% 100%)`;
+  progressBar.style.background = `linear-gradient(to right, white ${progressPercent}%, #d3d3d3 ${progressPercent}% 100%)`;
 
   currentTimeElem.textContent = formatCurrentTime(currentTime);
 });
