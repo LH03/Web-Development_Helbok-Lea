@@ -9,10 +9,11 @@
 
 <body>
   <div id="navbar">
-    <div id="title">Spotify Playlist</div>
-    <input type="text" id="search-bar" placeholder="Search...">
-    <div id="notifications"><img src="img/notification.svg"></div>
-    <div id="profile"><img src="img/Profile.svg"></div>
+    <div id="title"><img src="img/logo.svg" alt="logo"></div>
+    <div class="icons-nav">
+      <div id="notifications"><img src="img/notification.svg"></div>
+      <div id="profile"><img src="img/Profile.svg"></div>
+    </div>
   </div>
   <div id="main">
     <div class="player" id="player">
@@ -23,7 +24,19 @@
           <span id="artist-name">Artist Name</span>
         </div>
       </div>
-      <audio id="audio-player" controls style="width: 100%; margin-top: 20px;"></audio>
+      <audio id="audio-player" style="display: none;"></audio>
+      <div class="controls">
+        <button id="prev-btn"><img src="img/prev.svg" alt="Previous"></button>
+        <button id="play-pause-btn"><img id="play-pause-icon" src="img/play.svg" alt="Play/Pause"></button>
+        <button id="next-btn"><img src="img/next.svg" alt="Next"></button>
+        <button id="random-btn"><img src="img/random.svg" alt="Random"></button>
+      </div>
+      <div id="progress-container">
+        <input type="range" id="progress-bar" value="0" max="100">
+      </div>
+      <div>
+        <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+      </div>
     </div>
     <div class="playlist">
       <img src="" alt="Playlist Art" id="playlist-art">

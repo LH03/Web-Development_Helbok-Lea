@@ -30,22 +30,18 @@ body {
   font-weight: bold;
 }
 
-#search-bar {
-  width: 500px;
-  padding: 10px;
-  margin-right: auto;
-  margin-left: auto;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+.icons-nav {
+  display: flex;
 }
 
 #profile,
 #notifications {
-  padding: 10px;
+  padding: 10px 10px 6px 10px;
   background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   margin-left: 10px;
-  border-radius: 50%;
+  margin-right: 10px;
+  border-radius: 100%;
 }
 
 #main {
@@ -58,18 +54,15 @@ body {
 }
 
 .player {
-  width: 300px;
+  width: 50%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 70px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 170px);
   overflow-y: auto;
-  display: none;
   backdrop-filter: blur(10px);
   border-radius: 8px;
 }
@@ -81,8 +74,8 @@ body {
 }
 
 #album-art {
-  width: 150px;
-  height: 150px;
+  width: 500px;
+  height: 500px;
   margin-bottom: 10px;
   margin-top: 20px;
   border-radius: 8px;
@@ -98,15 +91,18 @@ body {
 #track-name {
   font-size: 20px;
   font-weight: bold;
+  margin: 10px 0 5px 0;
+  padding: 10px;
 }
 
 #artist-name {
   font-size: 16px;
   color: #ddd;
+  margin-bottom: 10px;
 }
 
 .playlist {
-  flex: 1;
+  width: 50%;
   padding: 0 20px 20px 20px;
   overflow-y: auto;
 }
@@ -117,7 +113,6 @@ body {
   background: rgba(255, 255, 255, 0.1);
   z-index: 100;
   padding: 20px 20px 20px 20px;
-  /*border-bottom: solid 2px rgba(238, 238, 238, 0.5);*/
   backdrop-filter: blur(20px);
   border-radius: 10px;
 }
@@ -208,37 +203,34 @@ li:hover {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Thin and decent scrollbar style */
 .playlist::-webkit-scrollbar {
   width: 8px;
 }
 
 .playlist::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #414141;
 }
 
 .playlist::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #525252;
 }
 
 .playlist::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
-/* Firefox scrollbar style */
 .playlist {
   scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
+  scrollbar-color: #888 #616161;
 }
 
-/* Firefox scrollbar thumb on hover */
 .playlist:hover {
-  scrollbar-color: #555 #f1f1f1;
+  scrollbar-color: #555 #303030;
 }
 
 .playing-gif {
-  height: 30px; /* Ensure the height matches your requirement */
-  vertical-align: middle; /* Vertically align the GIF with the text */
+  height: 30px;
+  vertical-align: middle;
 }
 
 .track-number {
@@ -251,4 +243,73 @@ li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.controls button img {
+  width: 24px;
+  height: 24px;
+}
+
+.controls button:hover img {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+#progress-container {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+#progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  -webkit-appearance: none;
+}
+
+#progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #7118ea;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#progress-bar::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #7118ea;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#current-time,
+#duration {
+  font-size: 14px;
+  color: #ddd;
+}
+
+#current-time {
+  margin-right: 10px;
+}
+
+#duration {
+  margin-left: 10px;
 }
