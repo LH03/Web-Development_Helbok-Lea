@@ -1,6 +1,6 @@
 const SPOTIFY_CLIENT_ID = "67b411e20d594f30bf7a8d3bbde54285";
 const SPOTIFY_CLIENT_SECRET = "161fc5e3df004b95af3ba8c62f3eaf54";
-const PLAYLIST_ID = "4qZq7OpsC1908XPKEFb9uZ";
+const PLAYLIST_ID = "6QYQQWUQ14VxtOyju93Hn6";
 const container = document.querySelector('div[data-js="tracks"]');
 const albumArt = document.getElementById("album-art");
 const trackNameElem = document.getElementById("track-name");
@@ -17,6 +17,42 @@ const durationElem = document.getElementById("duration");
 const navbar = document.getElementById("navbar");
 const playlistTitle = document.getElementById("title");
 let isPlaylistTitleFixed = false;
+
+document.addEventListener("DOMContentLoaded", () => {
+  getSpotifyToken().then((token) => fetchPlaylist(token, DEFAULT_PLAYLIST_ID));
+});
+
+document.getElementById("load-playlist").addEventListener("click", () => {
+  const playlistUrl = document.getElementById("playlist-url").value;
+  const playlistId = extractPlaylistId(playlistUrl);
+  if (playlistId) {
+    getSpotifyToken().then((token) => fetchPlaylist(token, playlistId));
+  } else {
+    alert("Invalid Spotify playlist URL");
+  }
+});
+
+function extractPlaylistId(url) {
+  const match = url.match(/playlist\/([a-zA-Z0-9]+)/);
+  return match ? match[1] : null;
+}
+
+function getSpotifyToken() {
+  return fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization:
+        "Basic " + btoa(SPOTIFY_CLIENT_ID + ":" + SPOTIFY_CLIENT_SECRET),
+    },
+    body: "grant_type=client_credentials",
+  })
+    .then((response) => response.json())
+    .then((data) => data.access_token)
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 
 window.addEventListener("scroll", () => {
   const scrollPosition = window.scrollY;
