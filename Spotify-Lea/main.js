@@ -235,17 +235,24 @@ function formatCurrentTime(seconds) {
 }
 
 function skipToPrevTrack() {
-  if (currentTrackIndex > 0) {
+  let prevIndex = currentTrackIndex - 1;
+  while (prevIndex >= 0 && !tracks[prevIndex].track.preview_url) {
+    prevIndex--;
+  }
+  if (prevIndex >= 0) {
     playTrack(
-      currentTrackIndex - 1,
-      trackElements[currentTrackIndex - 1].querySelector("button"),
-      trackElements[currentTrackIndex - 1]
+      prevIndex,
+      trackElements[prevIndex].querySelector("button"),
+      trackElements[prevIndex]
     );
   }
 }
 
 function skipToNextTrack(index) {
-  const nextIndex = index !== undefined ? index + 1 : currentTrackIndex + 1;
+  let nextIndex = index !== undefined ? index + 1 : currentTrackIndex + 1;
+  while (nextIndex < tracks.length && !tracks[nextIndex].track.preview_url) {
+    nextIndex++;
+  }
   if (nextIndex < tracks.length) {
     playTrack(
       nextIndex,
@@ -260,6 +267,13 @@ function skipToNextTrack(index) {
     }
   }
 }
+
+// Add event listeners to the previous and next buttons
+const prevButton = document.getElementById("prev-btn");
+prevButton.addEventListener("click", skipToPrevTrack);
+
+const nextButton = document.getElementById("next-btn");
+nextButton.addEventListener("click", () => skipToNextTrack(currentTrackIndex));
 
 fetch("https://accounts.spotify.com/api/token", {
   method: "POST",
@@ -278,5 +292,3 @@ fetch("https://accounts.spotify.com/api/token", {
   .catch((error) => {
     console.error("Error:", error);
   });
-
-/*Fix previous and next button */

@@ -248,7 +248,7 @@ li:hover {
 .controls {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .controls button {
@@ -280,7 +280,7 @@ li:hover {
   height: 10px;
   background: #ddd;
   border-radius: 5px;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
 }
 
 #progress-bar::-webkit-slider-thumb {
