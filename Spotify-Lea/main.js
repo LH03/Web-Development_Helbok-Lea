@@ -228,6 +228,10 @@ audioPlayer.addEventListener("timeupdate", () => {
   currentTimeElem.textContent = formatCurrentTime(currentTime);
 });
 
+audioPlayer.addEventListener("ended", () => {
+  skipToNextTrack(currentTrackIndex);
+});
+
 function formatCurrentTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const sec = Math.floor(seconds % 60);
