@@ -18,42 +18,6 @@ const navbar = document.getElementById("navbar");
 const playlistTitle = document.getElementById("title");
 let isPlaylistTitleFixed = false;
 
-document.addEventListener("DOMContentLoaded", () => {
-  getSpotifyToken().then((token) => fetchPlaylist(token, DEFAULT_PLAYLIST_ID));
-});
-
-document.getElementById("load-playlist").addEventListener("click", () => {
-  const playlistUrl = document.getElementById("playlist-url").value;
-  const playlistId = extractPlaylistId(playlistUrl);
-  if (playlistId) {
-    getSpotifyToken().then((token) => fetchPlaylist(token, playlistId));
-  } else {
-    alert("Invalid Spotify playlist URL");
-  }
-});
-
-function extractPlaylistId(url) {
-  const match = url.match(/playlist\/([a-zA-Z0-9]+)/);
-  return match ? match[1] : null;
-}
-
-function getSpotifyToken() {
-  return fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization:
-        "Basic " + btoa(SPOTIFY_CLIENT_ID + ":" + SPOTIFY_CLIENT_SECRET),
-    },
-    body: "grant_type=client_credentials",
-  })
-    .then((response) => response.json())
-    .then((data) => data.access_token)
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-}
-
 window.addEventListener("scroll", () => {
   const scrollPosition = window.scrollY;
 
