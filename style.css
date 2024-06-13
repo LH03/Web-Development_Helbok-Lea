@@ -74,10 +74,10 @@ body {
 }
 
 #album-art {
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 400px;
   margin-bottom: 10px;
-  margin-top: 15px;
+  margin-top: 35px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -92,7 +92,7 @@ body {
 #track-name {
   font-size: 22px;
   font-weight: bold;
-  margin: 0px 0 5px 0;
+  margin: 10px 0 5px 0;
   padding: 10px;
 }
 
@@ -144,6 +144,10 @@ li {
   width: auto;
   height: 50px;
   border-radius: 4px;
+}
+
+#playlist-description {
+  font-size: 14px;
 }
 
 .track-details {
@@ -271,7 +275,7 @@ li:hover {
 }
 
 #progress-container {
-  width: 500px; /* Match the width of #album-art */
+  width: 450px; /* Match the width of #album-art */
   margin: 10px 0;
   display: flex;
   align-items: center;
@@ -291,15 +295,16 @@ li:hover {
   appearance: none; /* Remove default styling */
   width: 12px; /* Smaller thumb width */
   height: 12px; /* Smaller thumb height */
-  background: #4c3cce;
+  background: #ffffff;
   border-radius: 50%;
   cursor: pointer;
+  margin-top: -3px; /* Adjust thumb position for Chrome */
 }
 
 #progress-bar::-moz-range-thumb {
   width: 12px; /* Smaller thumb width */
   height: 12px; /* Smaller thumb height */
-  background: #4c3cce;
+  background: #ffffff;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -307,7 +312,7 @@ li:hover {
 #progress-bar::-ms-thumb {
   width: 12px; /* Smaller thumb width */
   height: 12px; /* Smaller thumb height */
-  background: #4c3cce;
+  background: #ffffff;
   border-radius: 50%;
   cursor: pointer;
 }

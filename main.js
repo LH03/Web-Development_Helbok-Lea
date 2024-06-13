@@ -1,6 +1,6 @@
 const SPOTIFY_CLIENT_ID = "67b411e20d594f30bf7a8d3bbde54285";
 const SPOTIFY_CLIENT_SECRET = "161fc5e3df004b95af3ba8c62f3eaf54";
-const PLAYLIST_ID = "6QYQQWUQ14VxtOyju93Hn6";
+const PLAYLIST_ID = "4qZq7OpsC1908XPKEFb9uZ";
 const container = document.querySelector('div[data-js="tracks"]');
 const albumArt = document.getElementById("album-art");
 const trackNameElem = document.getElementById("track-name");
@@ -223,7 +223,7 @@ audioPlayer.addEventListener("timeupdate", () => {
   const currentTime = audioPlayer.currentTime;
   const progressPercent = (currentTime / audioPlayer.duration) * 100;
   progressBar.value = progressPercent;
-  progressBar.style.background = `linear-gradient(to right, white ${progressPercent}%, #d3d3d3 ${progressPercent}% 100%)`;
+  progressBar.style.background = `linear-gradient(to right, purple ${progressPercent}%, #d3d3d3 ${progressPercent}% 100%)`;
 
   currentTimeElem.textContent = formatCurrentTime(currentTime);
 });
